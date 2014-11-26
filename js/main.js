@@ -33,18 +33,18 @@ $(function() {
 //Handles slider value changes based on slider positions
         onSlideEnd: function(position, value ) {
         
-          sliding_input = this.$range.parent().attr('id');
+          control_input = this.$range.parent().attr('id');
           control_value = $(this)[0].value;
 
           function controlSliders(a,b){
 
             //theRanges = ['#range_1 [data-rangeslider]','#range_2 [data-rangeslider]','#range_3 [data-rangeslider]','#range_4 [data-rangeslider]'];
             // ^ Simplified below!
-            var theRanges = []
+            var theRanges = [];
             $('.ranges').each(function(){
               theRanges.push('#' + $(this).attr('id') + ' [data-rangeslider]'); 
             });
-            //theRangesValues = [$(range_1 [data-rangeslider]).value, $(range_2 [data-rangeslider]).value, $(range_3 [data-rangeslider]).value, $(range_4 [data-rangeslider]).value];  
+          
 
             switch(a) {
 
@@ -63,21 +63,51 @@ $(function() {
             }          
            
               //console.log(theRangesValues);
-              target_inputs = $(theRanges[0] + ', ' + theRanges[1] + ', ' + theRanges[2] + ', ' + theRanges[3]);
+              //target_inputs = $(theRanges[0] + ', ' + theRanges[1] + ', ' + theRanges[2] + ', ' + theRanges[3]);
               
-              target_values = (100 - b)/3;
-              
-              //Change the value of the other sliders when the user adjusts a slider
-              $(target_inputs).val(target_values).change();
+              //alert(theRanges);
 
-               console.log('sliding input' + ' ' + a);
-               console.log('control value' + ' ' + b); 
-               console.log('target inputs' + ' ' + target_inputs); 
-               console.log(theRanges);
+              var theRangeValues = [];
+              var q = theRanges.length;
+           
+              //Set other slider values on single slider move
+              for (var i = 0; i < q; i++) {
+                
+                //console.log($(theRanges[i]).val());
+                current_values = $(theRanges[i]).val();
+                target_values = (100 - b)/3;
+                
+                //Target Inputs
+                target_inputs = $(theRanges[i]);
+
+                 console.log('current values = ' + i + ' ' + current_values);
+                 console.log('target inputs = ' + i + ' ' + target_inputs.attr('id'));
+                 console.log('target values = ' + i + ' ' + target_values);
+
+                //Change the value of the other sliders when the user adjusts a slider
+                $(target_inputs).val(target_values).change();
+
+              }
+
+
+              
+              
+              
+
+               console.log('control input' + ' ' + a);
+               console.log('control value!! = ' + ' ' + b); 
+               // console.log(theRangeValues);
+               // console.log($('#range_1 [data-rangeslider]').val());
 
           }
 
-          controlSliders(sliding_input,control_value);
+
+          
+
+
+
+
+          controlSliders(control_input,control_value);
 
        }
     });
