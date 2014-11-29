@@ -16,8 +16,6 @@ $(function() {
       },
       onSlide: function(pos, value) {
 
-
-
         var $valueBubble = $('.rangeslider__value-bubble', this.$range);
         tempPosition = pos + this.grabX;
         position = (tempPosition <= this.handleWidth) ? this.handleWidth : (tempPosition >= this.maxHandleX) ? this.maxHandleX : tempPosition;
@@ -88,12 +86,7 @@ $(function() {
                 $(target_inputs).val(target_values).change();
 
               }
-
-
-              
-              
-              
-
+               
                console.log('control input' + ' ' + a);
                console.log('control value!! = ' + ' ' + b); 
                // console.log(theRangeValues);
@@ -101,13 +94,7 @@ $(function() {
 
           }
 
-
-          
-
-
-
-
-          controlSliders(control_input,control_value);
+            controlSliders(control_input,control_value);
 
        }
     });
